@@ -1,6 +1,6 @@
 var mongojs = require('mongojs');
 
-var databaseUrl = 'mongodb://admin:admin@ds123933.mlab.com:23933/fac';
+var databaseUrl = 'mongodb://facAdmin:facAdmin@10.182.247.73:27017/fac';
 var collections = ['users'];
 
 var connect = mongojs(databaseUrl, collections);
