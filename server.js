@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //routes
+// app.use('/', require('./controllers/index.controller'));
 app.use('/users', require('./controllers/users.controller'));
 
 //start server

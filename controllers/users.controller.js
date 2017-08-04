@@ -2,9 +2,6 @@ var app = require('express');
 var router = app.Router();
 var userService = require('../services/user.service');
 
-var mysqlconfig = require("../mysql-db");
-var connection = mysqlconfig.connection;
-
 // routes
 // router.post('/authenticate', authenticate);
 router.post('/register', register);
