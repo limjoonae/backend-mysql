@@ -44,8 +44,8 @@ function register(req, res) {
 }
 function _delete(req, res) {
     userService.deleteUser(req.body)
-        .then(function (){
-            res.status(200).send(`Delete success`);
+        .then(function (result){
+            res.status(200).send(result);
         })
         .catch(function (err) {
             res.status(400).send(err);
