@@ -14,7 +14,7 @@ router.delete('/delete', _delete);
 module.exports = router;
 
 function getAllUsers(req, res) {
-    userService.getAllUsers(req, res)
+    userService.getAllUsers()
         .then(function (users) {
             res.send(users);
         })
@@ -24,7 +24,7 @@ function getAllUsers(req, res) {
 }
 
 function getAllProjectByEmail(req, res) {
-    userService.getAllProjectByEmail(req, res)
+    userService.getAllProjectByEmail(req.params.email)
         .then(function (projects) {
             res.send(projects);
         })

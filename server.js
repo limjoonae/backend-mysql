@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //routes
-app.use('/users', require('./controllers/users.controller'));
+app.use('/users', require('./src/controllers/users.controller'));
 
 //start server
 var port = process.env.NODE_ENV === 'production' ? 80 : 4000;
