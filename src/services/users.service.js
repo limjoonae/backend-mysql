@@ -13,6 +13,7 @@ service.createUser = createUser;
 service.deleteUser = deleteUser;
 service.insertOne = insertOne;
 service.deleteOne = deleteOne;
+service.getExistingUserInSomeProject = getExistingUserInSomeProject;
 
 module.exports = service;
 
@@ -42,7 +43,7 @@ function getAllProjectByEmail(userEmail) {
 };
 
 function getExistingUserInSomeProject(userParam) {
-  var selectOneQuery = `SELECT * FROM users WHERE  ?? = ? AND ?? = ? AND ?? = ? AND ?? = ?`;
+  var selectOneQuery = `SELECT * FROM users WHERE ?? = ? AND ?? = ? AND ?? = ? AND ?? = ?`;
   // ?? stand for column name, ? stand for value
   var selectStatementParam = ['ul_code', userParam.ulCode, 'service_name', userParam.serviceName, 'project_name', userParam.projectName, 'email', userParam.email];
   return selectOneQuery = connection.format(selectOneQuery, selectStatementParam);

@@ -43,4 +43,11 @@ describe('Test Users Service', () => {
             expect(data).to.deep.equal(result);
         });
     });
+
+    it(' "getExistingUserInSomeProject" should return Query String', () => {
+        var userParam = {"ulCode":12345,"serviceName":"unitTest","projectName":"unitTest","email":"unitTest"};
+        let result = "SELECT * FROM users WHERE `ul_code` = 12345 AND `service_name` = 'unitTest' AND `project_name` = 'unitTest' AND `email` = 'unitTest'";
+        let returnResult = service.getExistingUserInSomeProject(userParam);
+        expect(returnResult).to.equal(result);
+    });
 });
