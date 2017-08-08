@@ -1,6 +1,5 @@
 const expect = require('chai').expect;
 const usersService = require('../src/services/users.service');
-const dataObj = require('./users.datatest.js');
 
 describe('Test Users Service', () => {
     let service = usersService;
