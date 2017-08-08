@@ -58,14 +58,13 @@ function createUser(userParam) {
     if (rows.length) {
       deferred.reject('Username "' + userParam.firstName + '" of project "'+ userParam.projectName +'" is already taken');
     } else {
-      insertOne(userParam);
+      deferred = insertOne(userParam, deferred);
     }
   });
   return deferred.promise;
 };
 
-function insertOne(userObj) {
-    var deferred = Q.defer();
+function insertOne(userObj, deferred) {
     var insertRegisterDataQuery = `INSERT INTO users (ul_code, service_name, project_name, first_name, last_name, email) 
                                   VALUES (?, ?, ?, ?, ?, ?)`;
     var insertStatementParam = [userObj.ulCode, userObj.serviceName, userObj.projectName, userObj.firstName, userObj.lastName, userObj.email]
@@ -75,7 +74,7 @@ function insertOne(userObj) {
       if (err) throw deferred.reject(err.name + ': ' + err.message);
       deferred.resolve('Insertion success');
     });
-    return deferred.promise;
+    return deferred;
 };
 
 function deleteUser(userParam) {
@@ -85,7 +84,7 @@ function deleteUser(userParam) {
   connection.query(selectByInputQuery(userParam) , function (err, rows, fields) {
     if (err) throw deferred.reject(err.name + ': ' + err.message);
     if (rows.length) {
-        deleteOne(userParam);
+        deferred = deleteOne(userParam, deferred);
       } else {
       deferred.reject('Username "' + userParam.firstName + '" of project "'+ userParam.projectName +'" is does not exist');
     }
@@ -93,8 +92,7 @@ function deleteUser(userParam) {
   return deferred.promise;
 }
 
-function deleteOne(userParam) {
-  var deferred = Q.defer();
+function deleteOne(userParam, deferred) {
   var deleteOneQuery = `DELETE FROM users WHERE  ?? = ? AND ?? = ? AND ?? = ? AND ?? = ?`;
   var deleteStatementParam = ['ul_code', userParam.ulCode, 'service_name', userParam.serviceName, 'project_name', userParam.projectName, 'email', userParam.email];
   deleteOneQuery = connection.format(deleteOneQuery, deleteStatementParam);
@@ -102,5 +100,5 @@ function deleteOne(userParam) {
     if (err) throw deferred.reject(err.name + ': ' + err.message);
     deferred.resolve('Deletion success');
   });
-  return deferred.promise;
+  return deferred;
 };
