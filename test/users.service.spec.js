@@ -5,7 +5,7 @@ const Q = require('q');
 describe('Test Users Service', () => {
     let service = usersService;
 
-    it(' "insertUserData" should return "Insertion success"', () => {
+    it(' "insertOne" should return "Insertion success"', () => {
         let deferred = Q.defer();
         let userData = {"ulCode":12345,"serviceName": "unitTest", "projectName": "unitTest", "firstName": "unitTest", "lastName": "unitTest", "email": "unitTest" };
         let result = 'Insertion success';
@@ -37,7 +37,7 @@ describe('Test Users Service', () => {
         });
     });
 
-    it(' "deleteUser" should return "Deletion success"', () => {
+    it(' "deleteOne" should return "Deletion success"', () => {
         let deferred = Q.defer();
         var userParam = {"ulCode":12345,"serviceName":"unitTest","projectName":"unitTest","email":"unitTest"};
         let result = 'Deletion success';
