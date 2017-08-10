@@ -56,7 +56,7 @@ function createUser(userParam) {
   connection.query(selectByInputQuery(userParam) , function (err, rows, fields) {
     if (err) throw deferred.reject(err.name + ': ' + err.message);
     if (rows.length) {
-      deferred.reject('Username "' + userParam.firstName + '" of project "'+ userParam.projectName +'" is already taken');
+      deferred.reject('Username "' + userParam.firstName + '" of project "'+ userParam.projectName +'" is already taken.');
     } else {
       deferred = insertOne(userParam, deferred);
     }
@@ -72,7 +72,7 @@ function insertOne(userObj, deferred) {
 
     connection.query(insertRegisterDataQuery , function (err, rows, fields) {
       if (err) throw deferred.reject(err.name + ': ' + err.message);
-      deferred.resolve('Insertion success');
+      deferred.resolve('Registeration success.');
     });
     return deferred;
 };
@@ -86,7 +86,7 @@ function deleteUser(userParam) {
     if (rows.length) {
         deferred = deleteOne(userParam, deferred);
       } else {
-      deferred.reject('Username "' + userParam.firstName + '" of project "'+ userParam.projectName +'" is does not exist');
+      deferred.reject('Username "' + userParam.firstName + '" of project "'+ userParam.projectName +'" is does not exist.');
     }
   });
   return deferred.promise;
@@ -98,7 +98,7 @@ function deleteOne(userParam, deferred) {
   deleteOneQuery = connection.format(deleteOneQuery, deleteStatementParam);
   connection.query(deleteOneQuery , function (err, rows, fields) {
     if (err) throw deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve('Deletion success');
+    deferred.resolve('Deletion success.');
   });
   return deferred;
 };

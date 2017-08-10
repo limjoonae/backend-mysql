@@ -39,7 +39,7 @@ function register(req, res) {
             res.status(200).send(result);
         })
         .catch(function (err) {
-            res.status(400).send(err);
+            res.status(406).send(err);
         });
 }
 function _delete(req, res) {
